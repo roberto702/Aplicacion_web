@@ -1,0 +1,5 @@
+
+AuthName "Protected Administration Page"
+AuthUserFile "http://localhost/CodeIgniter-SiAC/Connections/Android/.htpwd"
+AuthType Basic
+require valid-user

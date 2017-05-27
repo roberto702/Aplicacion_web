@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	    $body['nom_usuario'],
 	    $body['fecha_registro'],
 	    $body['estatus'],
-        $body['tipo'],
+        $body['tipo'], 
         $body['password']);
 		
     if ($retorno) {
