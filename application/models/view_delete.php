@@ -1,7 +1,7 @@
 <?php
 
 $input_con_id = array(
-              'nombre_clase'        => $datos_clase[0]->nombre_clase,
+              'ID'        => $datos_usuarios[0]->ID,
             );
 
 ?><div id="container">
@@ -10,7 +10,7 @@ $input_con_id = array(
 	  echo '<center>';
 	  echo '<table border=0 class="ventanas" width="650" cellspacing="0" cellpadding="0">';
 	  echo '<tr>';
-	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>Eliminar Información de ".$datos_clase[0]->nombre_clase."</legend></td>";
+	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>Eliminar Información de ".$datos_usuarios[0]->NOMBRE.' '.$datos_usuarios[0]->APELLIDOS."</legend></td>";
 	  echo '</tr>';
 	  echo '<tr><td colspan=3><center>';
 	  echo '<table width="600">';

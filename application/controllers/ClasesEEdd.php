@@ -32,13 +32,13 @@ class ClasesEEdd extends CI_Controller
 		$this->ValidaCampos();
 		if($this->form_validation->run() == TRUE){
 				//Verificamos si existe la clase
-			   $VerifyExist = $this->model_clases->ExisteNombreClase($this->input->post("nombre_clase"));
+			   $VerifyExist = $this->model_clases->ExisteClase($this->input->post("nombre_clase"));
                if($VerifyExist==0){
                	    $ClaseInsertar = $this->input->post();//Recibimos todo los campos por array nos lo envia codeigther
-               	    $ClaseInsertar["FECHA_REGISTRO"] = $hoy;//le agregamos la fecha de registro
+               	    $ClaseInsertar["fecha_clase"] = $hoy;//le agregamos la fecha de registro
                	    //guardamos los registros
-               	    $this->model_clases->SaveClases($ClaseInsertar);
-               	    redirect("clase?save=true");
+               	    $this->model_clases->SaveClase($ClaseInsertar);
+               	    redirect("claseseedd?save=true");
                }
 			   if($VerifyExist>0){
                     $this->session->set_flashdata('msg', '<div class="alert alert-error text-center">Nombre de la Clase Duplicado</div>');
@@ -57,8 +57,8 @@ class ClasesEEdd extends CI_Controller
 		/*Campos para validar que no esten vacio los campos*/
 		 $this->form_validation->set_rules("nombre_clase", "Nombre_Clase", "trim|required");
 		 $this->form_validation->set_rules("fecha_clase", "Fecha_clase", "trim|required");
-		 $this->form_validation->set_rules("rut_maestro", "Rut_Maestro", "trim|required");
-		 $this->form_validation->set_rules("rut_alumno", "Rut_Alumno", "callback_select_tipo");
+		 //$this->form_validation->set_rules("rut_maestro", "Rut_Maestro", "trim|required");
+		 //$this->form_validation->set_rules("rut_alumno", "Rut_Alumno", "callback_select_tipo");
 		 //$this->form_validation->set_rules("ESTATUS", "Estatus", "callback_select_estatus");
 	 }
 	 function select_tipo($campo)
@@ -73,11 +73,11 @@ class ClasesEEdd extends CI_Controller
 		}
 	}
 	
-	 public function editar($id_clase = NULL){
+	 public function editar($nombre_clase = NULL){
 		
-		if ($id_clase == NULL OR !is_numeric($id_clase)){
+		if ($nombre_clase == NULL){
 			$data['Modulo']  = "ClasesEEdd";
-			$data['Error']   = "Error: El ID <strong>".$id_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
+			$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
 			$this->load->view('footer');
@@ -89,18 +89,18 @@ class ClasesEEdd extends CI_Controller
 				
 			if ($this->form_validation->run() == TRUE){
 				$datos_update = $this->input->post();
-				$id_insertado = $this->model_clases->edit($datos_update,$id_clase);
-				redirect('clase?update=true');
+				$id_insertado = $this->model_clases->edit($datos_update,$nombre_clase);
+				redirect('claseseedd?update=true');
 				
 			}else{
 				$this->Nuevo();
 			}
 			
 		}else{
-			$data['datos_clase'] = $this->model_clases->BuscarID($id_clase);
+			$data['datos_clase'] = $this->model_clases->BuscarID($nombre_clase);
 			if (empty($data['datos_clase'])){
 				$data['Modulo']  = "ClasesEEdd";
-				$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
+				$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
 				$this->load->view('footer');
@@ -112,29 +112,29 @@ class ClasesEEdd extends CI_Controller
 		}
 		
 	}
-	public function eliminar($id_clase = NULL){
-		if ($id_clase == NULL OR !is_numeric($id_clase)){
+	public function eliminar($nombre_clase = NULL){
+		if ($nombre_clase == NULL ){
 			$data['Modulo']  = "ClasesEEdd";
-			$data['Error']   = "Error: El ID <strong>".$id_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
+			$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
 			$this->load->view('footer');
 			return;
 		}
 		if ($this->input->post()) {
-			$id_eliminar = $this->input->post('ID_CLASE');
+			$id_eliminar = $this->input->post('nombre_clase');
 			$boton       = strtoupper($this->input->post('btn_guardar'));
 			if($boton=="NO"){
-				redirect("clase");
+				redirect("claseseedd");
 			}else{
                                 $this->model_clases->Eliminar($id_eliminar);
-				redirect("clase?delete=true");
+				redirect("claseseedd?delete=true");
 			}
 		}else{
-			$data['datos_clase'] = $this->model_clases->BuscarID($id_clase);
+			$data['datos_clase'] = $this->model_clases->BuscarID($nombre_clase);
 			if (empty($data['datos_clase'])){
 				$data['Modulo']  = "ClasesEEdd";
-				$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
+				$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
 				$this->load->view('footer');

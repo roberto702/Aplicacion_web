@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
            
             $(document).ready(function() {
@@ -29,9 +28,7 @@ if(isset($_GET['update'])){
 <tr>
 <th>ACCION</th>
 <th>NOMBRE CLASE</th>
-<th>FECHA CLASE</th>
-<th>RUT MAESTRO</th>
-<th>RUT ALUMNO</th>
+<th>FECHA CREACIÓN</th>
 </tr>
 </thead>
 <tbody>
@@ -42,14 +39,14 @@ if(isset($_GET['update'])){
  		echo '<tr>';
 		echo '<td>'
 ?>
-		<a href="<?php echo base_url();?>index.php/clase/editar/<?php echo $clase_1->ID;?>/" class="btn btn-success">Editar</a>
-		<a href="<?php echo base_url();?>index.php/clase/eliminar/<?php echo $clase_1->ID ?>" class="btn btn-danger">Eliminar</a>
+		<a href="<?php echo base_url();?>index.php/claseseedd/editar/<?php echo $clase_1->nombre_clase;?>/" class="btn btn-success">Editar</a>
+		<a href="<?php echo base_url();?>index.php/claseseedd/eliminar/<?php echo $clase_1->nombre_clase ?>" class="btn btn-danger">Eliminar</a>
 <?php		
 		echo '</td>';
 		echo '<td>'.$clase_1->nombre_clase.'</td>';
 		echo '<td>'.$clase_1->fecha_clase.'</td>';
-		echo '<td>'.$clase_1->rut_maestro.'</td>';
-		echo '<td>'.$clase_1->rut_alumno.'</td>';
+		//echo '<td>'.$clase_1->rut_maestro.'</td>';
+		//echo '<td>'.$clase_1->rut_alumno.'</td>';
 		echo '</tr>';
  	} 
  }
