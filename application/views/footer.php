@@ -6,11 +6,6 @@
     
    </center>
     </footer>
-      	
-   
-
-
-
-
+ 
 </body>
 </html>

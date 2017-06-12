@@ -11,7 +11,7 @@
 </script>
 
 <div id="container">
-	<h2 align="center">Catalogo de Usuarios</h2>
+	<h2 align="center">Listado de Usuarios</h2>
 	<?php
 if(isset($_GET['save'])){
 	echo '<div class="alert alert-success text-center">La Información  se Almaceno Correctamente</div>';
