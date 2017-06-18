@@ -4,6 +4,24 @@ class Model_alumnos extends CI_Model {
 		$this->db->order_by('rut ASC');
 		return $this->db->get('datos_alumnos')->result();
 	}
+	
+	function get_ListarClase(){
+	// se arma la consulta
+	$query = $this->db->query('SELECT id_clase, nombre_clase FROM clase');
+	
+	//si hay resultados 
+	if ($query->num_rows() > 0){
+		//almacenamos en una matriz bidimensional
+		foreach($query->result() as $row)
+		$arrDatos[htmlspecialchars($row->id_clase, ENT_QUOTES)]=htmlspecialchars($row->nombre_clase,ENT_QUOTES);
+		$query->free_result();
+		return $arrDatos;
+	}
+		
+	$this->db->order_by('id_clase ASC');
+	return $this->db->get('clase')->result();
+	}
+	
 	public function ExisteAlumno($rut){
           $this->db->from('datos_alumnos');
           $this->db->where('rut',$rut);

@@ -28,7 +28,6 @@ if(isset($_GET['update'])){
 <tr>
 <th>ACCION</th>
 <th>NOMBRE CLASE</th>
-<th>FECHA CREACIÓN</th>
 </tr>
 </thead>
 <tbody>
@@ -44,7 +43,7 @@ if(isset($_GET['update'])){
 <?php		
 		echo '</td>';
 		echo '<td>'.$clase_1->nombre_clase.'</td>';
-		echo '<td>'.$clase_1->fecha_clase.'</td>';
+		//echo '<td>'.$clase_1->fecha_clase.'</td>';
 		//echo '<td>'.$clase_1->rut_maestro.'</td>';
 		//echo '<td>'.$clase_1->rut_alumno.'</td>';
 		echo '</tr>';

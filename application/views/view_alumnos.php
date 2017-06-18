@@ -2,7 +2,7 @@
 <script type="text/javascript">
            
             $(document).ready(function() {
-                $('#datos_alumnos').dataTable( {
+                $('#alumnos').dataTable( {
                     // sDom: hace un espacio entre la tabla y los controles 
                 "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
         
@@ -28,6 +28,7 @@ if(isset($_GET['update'])){
 <thead>
 <tr>
 <th>ACCION</th>
+<th>NOMBRE CLASE</th>
 <th>RUT</th>
 <th>NOMBRE</th>
 <th>APELLIDOS</th>
@@ -49,6 +50,45 @@ if(isset($_GET['update'])){
 		<a href="<?php echo base_url();?>index.php/alumnos/eliminar/<?php echo $alumnos_1->rut;?>/" class="btn btn-danger">Eliminar</a>
 <?php		
 		echo '</td>';
+		switch($alumnos_1->id_clase){
+			case 1:
+					$alumnos_1->id_clase = "SAMUEL";
+					break;
+			case 2:
+					$alumnos_1->id_clase = "DAVID";
+					break;
+			case 3:
+					$alumnos_1->id_clase = "ESTER";
+					break;
+			case 4:
+					$alumnos_1->id_clase = "ESTER";
+					break;		
+			case 5:
+					$alumnos_1->id_clase = "TIMOTEO";
+					break;		
+			case 6:
+					$alumnos_1->id_clase = "GEDEON";
+					break;		
+			case 7:
+					$alumnos_1->id_clase = "DANIEL";
+					break;		
+			case 8:
+					$alumnos_1->id_clase = "JOSUE";
+					break;		
+			case 9:
+					$alumnos_1->id_clase = "CALEB";
+					break;		
+			case 10:
+					$alumnos_1->id_clase = "ABRAHAM";
+					break;		
+			case 11:
+					$alumnos_1->id_clase = "TITO";
+					break;		
+					
+					
+		}	
+		
+		echo '<td>'.$alumnos_1->id_clase.'</td>';
 		echo '<td>'.$alumnos_1->rut.'</td>';
 		echo '<td>'.$alumnos_1->nombre.'</td>';
 		echo '<td>'.$alumnos_1->apellidos.'</td>';

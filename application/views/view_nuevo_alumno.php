@@ -1,3 +1,15 @@
+<script type="text/javascript">
+           
+            $(document).ready(function() {
+                $('#clase').dataTable( {
+                    // sDom: hace un espacio entre la tabla y los controles 
+                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+        
+                } );
+            } );
+</script>
+
+
 <?php
 	  echo '<center>';
 	  echo '<table border=0 class="ventanas" width="650" cellspacing="0" cellpadding="0">';
@@ -27,7 +39,32 @@
 	echo '</td>';
 	echo '<td><font color="red">'.form_error('rut').'</font></td>';
 	echo '</tr>';
-		
+	
+	//echo form_label('Nombre Clase: '), form_dropdown('selClase', $arrClase);
+	
+	
+	 $arrClase = array(
+	'0'  => '-SELECCIONE Nombre Clase-',
+	'1'	 => 'SAMUEL',
+	'2'	 => 'DAVID',
+	'3'  => 'ESTER',
+	'4'	 => 'JOEL',
+	'5'  => 'TIMOTEO',
+	'6'  => 'GEDEON',
+	'7'  => 'DANIEL',
+	'8'  => 'JOSUE',
+	'9'  => 'CALEB',
+	'10' => 'ABRAHAM',
+	'11' => 'TITO',
+	);
+	echo '<tr>';
+    echo '<td>'.form_label("Nombre Clase:",'nombre_clase').'</td>';
+    echo '<td>';
+    echo  form_dropdown('id_clase', $arrClase, set_value('id_clase',@$datos_alumnos_tabla[0]->id_clase));
+    echo '</td>';
+    echo '<td><font color="red">'.form_error('nombre_clase').'</font></td>';
+    echo '</tr>'; 
+	
 	$Nombre 	  = array(
 	'name'        => 'nombre',
 	'id'          => 'nombre',

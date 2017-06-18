@@ -20,6 +20,12 @@ class Alumnos extends CI_Controller
           $this->Seguridad();
           $this->load->view('header');
 		  $data['alumnos'] = $this->model_alumnos->ListarAlumnos();         
+		  //obtenemos el array de clase y lo preparamos para enviar
+		  $datos['arrClase'] = $this->model_alumnos->get_ListarClase();
+		  
+		  //cargamos la interfaz y le enviamos datos
+		  //$this->load->view('view_nuevo_alumno', $datos);
+		   
           $this->load->view('view_alumnos', $data);
           $this->load->view('footer');
 	}
@@ -35,7 +41,7 @@ class Alumnos extends CI_Controller
 			   $VerifyExist = $this->model_alumnos->ExisteAlumno($this->input->post("rut"));
                if($VerifyExist==0){
                	    $AlumnosInsertar = $this->input->post();//Recibimos todo los campos por array nos lo envia codeigther
-               	    $AlumnosInsertar["fecha_nacimiento"] = $hoy;//le agregamos la fecha de registro
+               	    //$AlumnosInsertar["fecha_"] = $hoy;//le agregamos la fecha de registro
                	    //guardamos los registros
                	    $this->model_alumnos->SaveAlumno($AlumnosInsertar);
                	    redirect("alumnos?save=true");
@@ -56,6 +62,7 @@ class Alumnos extends CI_Controller
 	 function ValidaCampos(){
 		/*Campos para validar que no esten vacio los campos*/
 		 $this->form_validation->set_rules("rut", "Rut", "trim|required");
+		 $this->form_validation->set_rules("clase_alumno", "Clase Alumno","callback_select_clase");
 		 $this->form_validation->set_rules("nombre", "Nombre", "trim|required");
 		 $this->form_validation->set_rules("apellidos", "Apellidos", "trim|required");
 		 $this->form_validation->set_rules("domicilio", "Domicilio", "trim|required");
@@ -78,7 +85,18 @@ class Alumnos extends CI_Controller
 		}
 	}
 	
-	 public function editar($rut = NULL){
+	function select_clase($campo)
+	{
+		if ($campo=="0"){
+			$this->form_validation->set_message('select_clase', 'El campo Clase es obligatorio.');
+		}else{
+		
+			return true;
+		}
+	}
+	
+		
+	public function editar($rut = NULL){
 		
 		if ($rut == NULL){
 			$data['Modulo']  = "Alumnos";
