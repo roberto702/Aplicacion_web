@@ -22,6 +22,7 @@ class Asistencia extends CI_Controller
           $this->Seguridad();
           $this->load->view('header');
           $data['alumnos'] = $this->model_alumnos->ListarAlumnos(); #No quitar esto
+		  $data2['alumnos'] = $this->model_alumnos->get_ArregloAlumnos(); #No quitar esto RMH
           $data['clase'] = $this->model_clases->ListarClases(); #Tampoco esto
 		  $data['asistencia'] = $this->model_asistencia->ListarAsistencia();          
           $this->load->view('view_asistencia', $data);
@@ -29,7 +30,7 @@ class Asistencia extends CI_Controller
           /*Si el usuario esta logeado*/
         
 	}
-     public function nuevo(){
+/*     public function nuevo(){
 	      $this->Seguridad();
 		  $hoy    = date("Y")."-".date("m")."-".date("d")." ".date("H:i:s");
 				
@@ -40,9 +41,35 @@ class Asistencia extends CI_Controller
                	    $this->model_asistencia->SaveAsistencia($AsistenciaInsertar);
                	    redirect("asistencia?save=true");
         
-         }
-	 	
-	public function editar($nombre_clase = NULL){
+    } */
+	
+	public function GuardarAsistencia($tmp)
+	{
+		$this->Seguridad();
+		echo 'Se ha guardado la lista actulizada de la clase';
+		$tmp = stripslashes($tmp);
+		$tmp = urldecode($tmp);
+		$tmp = unserialize($tmp);
+		foreach($tmp as $key => $value){
+			$Registro['rut_asistencia'] = $value[0];
+			$Registro['id_clase'] = $value[1];
+			$Registro['estado'] = $value[2];
+			$Registro['fecha_asistencia'] = $value[3];
+			$this->model_asistencia->SaveAsistencia($Registro);
+		}
+		redirect(base_url()."index.php/asistencia/index");
+	}
+	
+	public function LLenarArreglo()
+	{
+		while ($row = mysql_fetch_array($data2, MYSQL_NUM)) 
+		{
+			echo $row[0]."<br>"; 
+		}
+		
+	}
+		
+/* 	public function editar($nombre_clase = NULL){
 		
 		if ($nombre_clase == NULL){
 			$data['Modulo']  = "Asistencia";
@@ -80,8 +107,8 @@ class Asistencia extends CI_Controller
 			}
 		}
 		
-	}
-	public function eliminar($nombre_clase = NULL){
+	} */
+/* 	public function eliminar($nombre_clase = NULL){
 		if ($nombre_clase == NULL ){
 			$data['Modulo']  = "Asistencia";
 			$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Válido, Verifica tu Búsqueda !!!!!!!";
@@ -113,7 +140,7 @@ class Asistencia extends CI_Controller
 				$this->load->view('footer');
 			}
 		}
-	}
+	} */
 }
 /* Archivo Asistencia.php */
 /* Location: ./application/controllers/Asistencia.php */

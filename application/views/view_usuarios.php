@@ -9,7 +9,7 @@
                 } );
             } );
 </script>
-
+<center><img src="<?php echo base_url();?>imagenes/listadousuarios.png"/></center>
 <div id="container">
 	<h2 align="center">Listado de Usuarios</h2>
 	<?php

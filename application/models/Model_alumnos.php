@@ -5,6 +5,20 @@ class Model_alumnos extends CI_Model {
 		return $this->db->get('datos_alumnos')->result();
 	}
 	
+	function get_ArregloAlumnos(){
+		// se arma la consulta
+		$query_2 = $this->db->query('SELECT rut, id_clase FROM datos_alumnos');
+		
+		if ($query_2->num_rows() > 0){
+			//se guarda los datos en arreglo bidimensional
+			foreach($query_2->result() as $row)
+			$arrDatos_2[htmlspecialchars($row->rut, ENT_QUOTES)]=htmlspecialchars($row->rut,ENT_QUOTES);
+			$query_2->free_result();
+			return $arrDatos_2;
+		}	
+		
+	}
+	
 	function get_ListarClase(){
 	// se arma la consulta
 	$query = $this->db->query('SELECT id_clase, nombre_clase FROM clase');

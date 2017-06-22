@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 date_default_timezone_set('America/Mexico_City'); 
-class ClasesEEdd extends CI_Controller
+class Claseseedd extends CI_Controller
 {
 
      public function __construct()
@@ -76,7 +76,7 @@ class ClasesEEdd extends CI_Controller
 	 public function editar($nombre_clase = NULL){
 		
 		if ($nombre_clase == NULL){
-			$data['Modulo']  = "ClasesEEdd";
+			$data['Modulo']  = "Claseseedd";
 			$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
@@ -99,7 +99,7 @@ class ClasesEEdd extends CI_Controller
 		}else{
 			$data['datos_clase'] = $this->model_clases->BuscarID($nombre_clase);
 			if (empty($data['datos_clase'])){
-				$data['Modulo']  = "ClasesEEdd";
+				$data['Modulo']  = "Claseseedd";
 				$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
@@ -114,7 +114,7 @@ class ClasesEEdd extends CI_Controller
 	}
 	public function eliminar($nombre_clase = NULL){
 		if ($nombre_clase == NULL ){
-			$data['Modulo']  = "ClasesEEdd";
+			$data['Modulo']  = "Claseseedd";
 			$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
@@ -133,7 +133,7 @@ class ClasesEEdd extends CI_Controller
 		}else{
 			$data['datos_clase'] = $this->model_clases->BuscarID($nombre_clase);
 			if (empty($data['datos_clase'])){
-				$data['Modulo']  = "ClasesEEdd";
+				$data['Modulo']  = "Claseseedd";
 				$data['Error']   = "Error: El ID <strong>".$nombre_clase."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
@@ -146,5 +146,5 @@ class ClasesEEdd extends CI_Controller
 		}
 	}
 }
-/* Archivo ClasesEEdd.php */
-/* Location: ./application/controllers/ClasesEEdd.php */
+/* Archivo Claseseedd.php */
+/* Location: ./application/controllers/Claseseedd.php */
